@@ -1,21 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import * as SplashScreen from 'expo-splash-screen';
+import { Platform } from 'react-native';
+import styled from 'styled-components/native';
+import Route from 'config/routes';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import store, { persistor } from 'store';
 
-export default function App() {
+SplashScreen.preventAutoHideAsync();
+
+const App = () => {
+  SplashScreen.hideAsync();
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <KeyboardAvoidingView behavior="padding" enabled={Platform.OS === 'ios'}>
+          <ViewStyled>
+            <Route />
+          </ViewStyled>
+        </KeyboardAvoidingView>
+      </PersistGate>
+    </Provider>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const KeyboardAvoidingView = styled.KeyboardAvoidingView`
+  flex: 1;
+`;
+
+const ViewStyled = styled.View`
+  flex: 1;
+  justify-content: center;
+`;
+
+export default App;
