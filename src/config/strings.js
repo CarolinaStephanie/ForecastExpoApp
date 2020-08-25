@@ -5,7 +5,9 @@ const STRINGS = {
   cityTitle: 'City Details',
   back: 'back',
   historyList: 'History List',
+  favoriteList: 'Favorite List',
   remove: 'Remove',
+  addFavorite: 'Add to Favorites',
 
   temperature: 'Temperature',
   max: 'Max',
@@ -15,6 +17,7 @@ const STRINGS = {
   map: 'Map',
 
   mapsUnavailability: 'Unavailable for web',
+  nothingToShow: 'Nothing Yet',
 };
 
 export default STRINGS;
